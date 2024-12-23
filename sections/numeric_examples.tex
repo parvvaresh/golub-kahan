@@ -1,0 +1,217 @@
+\section{مثال عددی از الگوریتم بیدیاگونالیزاسیون گولوب-کاهان}
+
+فرض کنید ماتریس \( A \) به صورت زیر باشد:
+\[
+A = \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+\]
+
+\subsection*{گام اول: بازتاب هوسهولدر از چپ \lr{(i = 1)}}
+\begin{align*}
+B &= \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix} \\
+x &= \begin{bmatrix}
+1 \\
+4 \\
+7
+\end{bmatrix} \\
+v &= \begin{bmatrix}
+0.75 \\
+0.33 \\
+0.57
+\end{bmatrix} \\
+H &= I - 2 \frac{vv^T}{v^T v} = \begin{bmatrix}
+-0.12 & -0.49 & -0.86 \\
+-0.49 &  0.78 & -0.38 \\
+-0.86 & -0.38 &  0.34
+\end{bmatrix} \\
+\text{ضرب } H \cdot B &= \begin{bmatrix}
+-0.12 & -0.49 & -0.86 \\
+-0.49 &  0.78 & -0.38 \\
+-0.86 & -0.38 &  0.34
+\end{bmatrix} \cdot \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix} = \begin{bmatrix}
+ -8.12 &  -9.6 &  -11.08 \\
+  0 &  -0.09 &  -0.17 \\
+  0 &  -0.9 &  -1.8
+\end{bmatrix} \\
+\text{بروزرسانی } U &= I \cdot H = \begin{bmatrix}
+-0.12 & -0.49 & -0.86 \\
+-0.49 &  0.78 & -0.38 \\
+-0.86 & -0.38 &  0.34
+\end{bmatrix}
+\end{align*}
+
+\subsection*{گام دوم: بازتاب هوسهولدر از راست \lr{(i = 0)}}
+\begin{align*}
+B &= \begin{bmatrix}
+ -8.12 &  -9.6 &  -11.08 \\
+  0 &  -0.09 &  -0.17 \\
+  0 &  -0.9 &  -1.8
+\end{bmatrix} \\
+x &= \begin{bmatrix}
+ -9.6 \\
+ -11.08
+\end{bmatrix} \\
+v &= \begin{bmatrix}
+-0.91 \\
+-0.42
+\end{bmatrix} \\
+H &= I - 2 \frac{vv^T}{v^T v} = \begin{bmatrix}
+-0.65 & -0.76 \\
+-0.76 &  0.65
+\end{bmatrix} \\
+\text{ضرب } B \cdot H &= \begin{bmatrix}
+ -9.6011363 & -11.07823419 \\
+ -0.08596557 & -0.17193114 \\
+ -0.90043975 & -1.8008795
+\end{bmatrix} \cdot \begin{bmatrix}
+-0.65 & -0.76 \\
+-0.76 &  0.65
+\end{bmatrix} = \begin{bmatrix}
+-8.12 & 14.66 & -0 \\
+ 0 & 0.19 & -0.05 \\
+ 0 & 1.95 & -0.5
+\end{bmatrix} \\
+\text{بروزرسانی } V &= \begin{bmatrix}
+ 1 & 0 & 0 \\
+ 0 & -0.65 & -0.76 \\
+ 0 & -0.76 &  0.65
+\end{bmatrix}
+\end{align*}
+
+\subsection*{گام سوم: بازتاب هوسهولدر از چپ \lr{(i = 1)}}
+\begin{align*}
+B &= \begin{bmatrix}
+-8.12 & 14.66 & -0 \\
+ 0 & 0.19 & -0.05 \\
+ 0 & 1.95 & -0.5
+\end{bmatrix} \\
+x &= \begin{bmatrix}
+0.19 \\
+1.95
+\end{bmatrix} \\
+v &= \begin{bmatrix}
+0.74 \\
+0.67
+\end{bmatrix} \\
+H &= I - 2 \frac{vv^T}{v^T v} = \begin{bmatrix}
+-0.1 & -1 \\
+-1 & 0.1
+\end{bmatrix} \\
+\text{ضرب } H \cdot B &= \begin{bmatrix}
+-0.1 & -1 \\
+-1 & 0.1
+\end{bmatrix} \cdot \begin{bmatrix}
+ 0 & 0.19 & -0.05 \\
+ 0 & 1.95 & -0.5
+\end{bmatrix} = \begin{bmatrix}
+-8.12 & 14.66 & -0 \\
+ -0 & -1.96 & 0.5 \\
+ -0 & -0 & 0
+\end{bmatrix} \\
+\text{بروزرسانی } U &= \begin{bmatrix}
+-0.49 & -0.86 \\
+ 0.78 & -0.38 \\
+-0.38 & 0.34
+\end{bmatrix} \cdot \begin{bmatrix}
+-0.1 & -1 \\
+-1 & 0.1
+\end{bmatrix} = \begin{bmatrix}
+-0.12 & 0.9 & 0.41 \\
+-0.49 & 0.3 & -0.82 \\
+-0.86 & -0.3 & 0.41
+\end{bmatrix}
+\end{align*}
+
+\subsection*{گام چهارم: بازتاب هوسهولدر از راست \lr{(i = 1)}}
+\begin{align*}
+B &= \begin{bmatrix}
+-8.12 & 14.66 & -0 \\
+ -0 & -1.96 & 0.5 \\
+ -0 & -0 & 0
+\end{bmatrix} \\
+x &= \begin{bmatrix}
+0.5
+\end{bmatrix} \\
+v &= \begin{bmatrix}
+1
+\end{bmatrix} \\
+H &= I - 2 \frac{vv^T}{v^T v} = \begin{bmatrix}
+-1
+\end{bmatrix} \\
+\text{ضرب } B \cdot H &= \begin{bmatrix}
+-8.12 & 14.66 & -0 \\
+ -0 & -1.96 & 0.5 \\
+ -0 & -0 & 0
+\end{bmatrix} \cdot \begin{bmatrix}
+-1
+\end{bmatrix} = \begin{bmatrix}
+-8.12 & 14.66 & 0 \\
+ -0 & -1.96 & -0.5 \\
+ -0 & -0 & -0
+\end{bmatrix} \\
+\text{بروزرسانی } V &= \begin{bmatrix}
+ 1 & 0 & 0 \\
+ 0 & -0.65 & 0.76 \\
+ 0 & -0.76 & -0.65
+\end{bmatrix}
+\end{align*}
+
+\subsection*{گام پنجم: بازتاب هوسهولدر از چپ \lr{(i = 2)}}
+\begin{align*}
+B &= \begin{bmatrix}
+-8.12 & 14.66 & 0 \\
+ -0 & -1.96 & -0.5 \\
+ -0 & -0 & -0
+\end{bmatrix} \\
+x &= \begin{bmatrix}
+-0
+\end{bmatrix} \\
+v &= \begin{bmatrix}
+-1
+\end{bmatrix} \\
+H &= I - 2 \frac{vv^T}{v^T v} = \begin{bmatrix}
+-1
+\end{bmatrix} \\
+\text{ضرب } H \cdot B &= \begin{bmatrix}
+-1
+\end{bmatrix} \cdot \begin{bmatrix}
+-0 & -0 & -0
+\end{bmatrix} = \begin{bmatrix}
+-8.12 & 14.66 & 0 \\
+ -0 & -1.96 & -0.5 \\
+ 0 & 0 & 0
+\end{bmatrix} \\
+\text{بروزرسانی } U &= \begin{bmatrix}
+ 0.41 \\
+-0.82 \\
+ 0.41
+\end{bmatrix} \cdot \begin{bmatrix}
+-1
+\end{bmatrix} = \begin{bmatrix}
+-0.12 & 0.9 & -0.41 \\
+-0.49 & 0.3 & 0.82 \\
+-0.86 & -0.3 & -0.41
+\end{bmatrix}
+\end{align*}
+
+در پایان، ماتریس \( B \) بیدیاگونال به صورت زیر است:
+\[
+B = \begin{bmatrix}
+-8.12 & 14.66 & 0 \\
+ -0 & -1.96 & -0.5 \\
+ 0 & 0 & 0
+\end{bmatrix}
+\]
+
+

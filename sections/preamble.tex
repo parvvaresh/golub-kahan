@@ -1,0 +1,36 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{drawmatrix}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage[bottom]{footmisc}
+\usepackage{pdfpages}
+\usepackage{xepersian}
+\usepackage{fontspec}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{[#1]\hfill}
+\makeatother
+
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0pt}
+
+% \settextfont[]{XB Niloofar}
+% \setmainfont{XB-Niloofar}[
+%     Path = ./fonts/,
+%     Extension = .ttf,
+%     BoldFont = XB-NiloofarBd,
+%     ItalicFont = XB-NiloofarIt
+% ]
+\settextfont[Scale=1.0,
+             BoldFont=*Bd,
+             ItalicFont=*It,
+             BoldItalicFont=*BdIt,
+             Extension=.ttf,
+             Path=./fonts/]{XB-Niloofar}
